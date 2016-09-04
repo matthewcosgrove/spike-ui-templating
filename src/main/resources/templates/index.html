@@ -20,23 +20,25 @@
 			<p th:text="'Hello, ' + ${testing} + '!'">Text will be here</p>
 			<i class="glyphicon glyphicon-apple"></i>
 		</div>
-		<div class="row">
-			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<div class="well">
-					<p>Well well</p>
+		<th:block th:each="str: ${mylist}">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="well">
+						<p th:text="'Hello, ' + ${str} + '!'">Well well</p>
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="well">
+						<p th:text="'Hello, ' + ${str} + '!'">boow</p>
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="well">
+						<p th:text="'Hello, ' + ${str} + '!'">hoo</p>
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<div class="well">
-					<p>boow</p>
-				</div>
-			</div>
-			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<div class="well">
-					<p>hoo</p>
-				</div>
-			</div>
-		</div>
+		</th:block>
 	</div>
 </body>
 </html>
