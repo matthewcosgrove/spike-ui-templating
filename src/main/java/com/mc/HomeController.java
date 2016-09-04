@@ -1,8 +1,10 @@
 package com.mc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +17,32 @@ class HomeController {
     @RequestMapping("/")
     String index(Model model) {
     	model.addAttribute("testing", "String from attribute");
-    	model.addAttribute("mylist", createList());
+    	model.addAttribute("mymap", createMap());
+    	model.addAttribute("myMapWithListValue", createMapWithListOfValues());
         return "index";
     }
 
-    private List<String> createList() {
+    private Map<String, String> createMap() {
+		return createList().stream().collect(Collectors.toMap(e -> "keyFor" + e, e -> e));
+	}
+    
+    private Map<String, List<String>> createMapWithListOfValues() {
+    	return createList().stream().collect(Collectors.toMap(e -> "keyForList" + e, e -> createRandomList()));
+    }
+
+	private List<String> createList() {
 		return Arrays.asList("text1","text2","text3");
+	}
+	private List<String> createRandomList() {
+		return Arrays.asList(concatWithRandomisedSuffix("text1"),concatWithRandomisedSuffix("text2"),concatWithRandomisedSuffix("text3"));
+	}
+
+	private String concatWithRandomisedSuffix(String txt) {
+		return txt + randomString();
+	}
+
+	private String randomString() {
+		return UUID.randomUUID().toString();
 	}
 
 	@RequestMapping("properties")

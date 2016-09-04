@@ -16,25 +16,45 @@
 <body>
 	<div class="container">
 		<div class="jumbotron">
-			<h3>Spring Boot and Thymeleaf</h3>
+			<h3>
+				Spring Boot and Thymeleaf <i class="glyphicon glyphicon-apple"></i>
+			</h3>
 			<p th:text="'Hello, ' + ${testing} + '!'">Text will be here</p>
-			<i class="glyphicon glyphicon-apple"></i>
+			<a th:href="@{/}" class="btn btn-success">Refresh</a>
 		</div>
-		<th:block th:each="str: ${mylist}">
+		<th:block th:each="entry: ${mymap}">
 			<div class="row">
 				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 					<div class="well">
-						<p th:text="'Hello, ' + ${str} + '!'">Well well</p>
+						<p th:text="'Hello, ' + ${entry.key} + '!'">The key</p>
 					</div>
 				</div>
 				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 					<div class="well">
-						<p th:text="'Hello, ' + ${str} + '!'">boow</p>
+						<p th:text="'Hello, ' + ${entry.value} + '!'">The value</p>
 					</div>
 				</div>
 				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 					<div class="well">
-						<p th:text="'Hello, ' + ${str} + '!'">hoo</p>
+						<p th:text="'Hello, ' + ${entry.value} + '!'">The value again</p>
+					</div>
+				</div>
+			</div>
+		</th:block>
+		<th:block th:each="entryWithListValue: ${myMapWithListValue}">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title" th:text="${entryWithListValue.key}">Panel
+						title</h3>
+				</div>
+				<div class="panel-body"
+					th:each="listEntry: ${entryWithListValue.value}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="well">
+								<p th:text="${listEntry}">List Entry</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
