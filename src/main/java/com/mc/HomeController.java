@@ -19,6 +19,7 @@ class HomeController {
     	model.addAttribute("testing", "String from attribute");
     	model.addAttribute("mymap", createMap());
     	model.addAttribute("myMapWithListValue", createMapWithListOfValues());
+    	model.addAttribute("myMapWithMapValue", createMapWithMapOfValues());
         return "index";
     }
 
@@ -28,6 +29,9 @@ class HomeController {
     
     private Map<String, List<String>> createMapWithListOfValues() {
     	return createList().stream().collect(Collectors.toMap(e -> "keyForList" + e, e -> createRandomList(e)));
+    }
+    private Map<Object, Object> createMapWithMapOfValues() {
+    	return createList().stream().collect(Collectors.toMap(e -> "keyForMap" + e, e -> createMapWithListOfValues()));
     }
 
 	private List<String> createList() {

@@ -38,21 +38,31 @@
 				</tr>
 			</tbody>
 		</table>
-		<th:block th:each="entryWithListValue: ${myMapWithListValue}">
+		<th:block th:each="entryWithMapValue: ${myMapWithMapValue}">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title" th:text="${entryWithListValue.key}">Panel
+					<h3 class="panel-title" th:text="${entryWithMapValue.key}">Panel
 						title</h3>
 				</div>
-				<div class="panel-body"
-					th:each="listEntry: ${entryWithListValue.value}">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="well">
-								<p th:text="${listEntry}">List Entry</p>
-							</div>
-						</div>
-					</div>
+				<div class="panel-body">
+					<table class="table table-striped table-hover form-narrow ">
+						<thead>
+							<tr>
+								<th class="text-center">Column 1</th>
+								<th class="text-center">Column 2</th>
+								<th class="text-center">Column 3</th>
+							</tr>
+						</thead>
+						<th:block th:each="myMapWithListValue: ${entryWithMapValue.value}">
+							<tbody th:each="entry: ${myMapWithListValue}">
+								<tr>
+									<th:block th:each="item: ${entry.value}">
+										<td class="text-center" th:text="${item}">value</td>
+									</th:block>
+								</tr>
+							</tbody>
+						</th:block>
+					</table>
 				</div>
 			</div>
 		</th:block>
