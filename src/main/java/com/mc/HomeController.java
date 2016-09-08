@@ -27,18 +27,18 @@ class HomeController {
 	}
     
     private Map<String, List<String>> createMapWithListOfValues() {
-    	return createList().stream().collect(Collectors.toMap(e -> "keyForList" + e, e -> createRandomList()));
+    	return createList().stream().collect(Collectors.toMap(e -> "keyForList" + e, e -> createRandomList(e)));
     }
 
 	private List<String> createList() {
 		return Arrays.asList("text1","text2","text3");
 	}
-	private List<String> createRandomList() {
-		return Arrays.asList(concatWithRandomisedSuffix("text1"),concatWithRandomisedSuffix("text2"),concatWithRandomisedSuffix("text3"));
+	private List<String> createRandomList(String name) {
+		return Arrays.asList(concatWithRandomisedSuffix(name),concatWithRandomisedSuffix(name),concatWithRandomisedSuffix(name));
 	}
 
 	private String concatWithRandomisedSuffix(String txt) {
-		return txt + randomString();
+		return txt + "----" + randomString();
 	}
 
 	private String randomString() {
